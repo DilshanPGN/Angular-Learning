@@ -1,0 +1,89 @@
+<h2>{{title}}</h2>   <!---Interpolation--->
+<h2 [textContent]="title" ></h2> <!---Property Binding--->
+
+<img src="{{imageUrl}}"/> <!---Interpolation--->
+<img [src]="imageUrl"/> <!---Property Binding--->
+
+<!---Attribute Binding-->
+<table >
+    <tr>
+        <td [attr.colSpan]="col">
+            This is colspaned row
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Past
+        </td>
+
+        <td>
+            Feauture
+        </td>
+    </tr>
+</table>
+
+<!---Bootstrap-->
+
+<button type="button" class="btn btn-primary">Primary</button>
+<button type="button" class="btn btn-secondary">Secondary</button>
+<button type="button" class="btn btn-success">Success</button>
+<button type="button" class="btn btn-danger">Danger</button>
+<button type="button" class="btn btn-warning">Warning</button>
+<button type="button" class="btn btn-info">Info</button>
+<button type="button" class="btn btn-light">Light</button>
+<button type="button" class="btn btn-dark">Dark</button>
+<button type="button" class="btn btn-link">Link</button>
+<br/>
+<br/>
+<br/>
+
+<!---class binding-->
+<button class="btn btn-primary" [class.active]="isActive" >Primary</button>
+
+<p> Event Binding</p>
+
+<button (click)="onSave($event)"> Save </button>
+
+
+<!---Stop event bubbling--->
+<div (click)="onDivClick()"> 
+    <button (click)="onSaveWithoutBubble($event)"> Click Here </button>
+</div>
+
+<!---Event filtering--->
+
+<input (keyup.enter)="upEnter()"/>
+
+
+
+<!----------------------Temmplate variable -------------------------->
+<!--- Traditional--->
+<input (keyup.enter)="oneKeyUpTrad($event)"/>
+
+<!--Angular special-->
+
+<input #email (keyup.enter) = "oneKeyUpSpecial(email.value)"/>
+
+
+<!----------------------Two way binding -------------------------->
+
+<!--ANgular specific-->
+<input [(ngModel)]="myemail" (keyup.enter)="OneKeyUp2way()"/>
+
+
+
+<!-- Pipes -->
+<br/>
+<p> Example for Pipes</p>
+
+{{courseDetail.title | uppercase}} <br/>
+{{courseDetail.students | number}} <br/>
+{{courseDetail.rating | number:'1.2-2'}} <br/>
+{{courseDetail.price | currency:'AUD' : '$' : '3.2-2'}} <br/>
+{{courseDetail.relaseDate | date : 'shortDate'}} <br/>
+
+
+<p> custom pipe </p>
+
+{{text | summary:10}}

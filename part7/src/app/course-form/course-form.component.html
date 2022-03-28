@@ -1,0 +1,98 @@
+<!--
+coursee name
+
+
+
+
+
+
+
+Development
+Art
+Language
+
+
+
+
+create
+
+-->
+
+
+<form ngForm #f="ngForm">
+
+    <!--Course Name-->
+    <div class="form-group">
+
+        <!--Input-->
+        <label for="course-name" class="h4"> Course Name </label>
+        <input 
+            ngModel 
+            #tmpCourseName = "ngModel" 
+            required
+            minlength ="5"
+            name="course-name" 
+            type="text" 
+            id="course-name" 
+            class="form-control"
+        > 
+        <!--validation-->
+        <div class="alert alert-danger" *ngIf="!tmpCourseName.valid && tmpCourseName.touched">
+            <div *ngIf="tmpCourseName.errors?.['required']"> Name is requied </div>
+            <div *ngIf="tmpCourseName.errors?.['minlength']"> Name should be minimum 5 characters </div>
+        </div>
+
+    </div>
+
+    <!--Course Category-->
+    <div class="form-group">
+
+        <!--Input-->
+        <label for="course-category" class="h4"> Course Category </label>
+        <select 
+            ngModel 
+            required
+            #tmpCourseCategory="ngModel"
+            name="course-category" 
+            id="course-category" 
+            class="form-control"
+        >
+            <option> </option>
+            <option *ngFor="let c of courseCategory" [value]="c.id"> {{c.name}} </option>
+        </select>
+
+        <!--validation-->
+        <div class="alert alert-danger" *ngIf="!tmpCourseCategory.valid && tmpCourseCategory.touched">
+            <div *ngIf="tmpCourseCategory.errors?.['required']"> Category is required </div>
+        </div>
+        
+    </div>
+
+    <!-- Check box-->
+    <div class="checkbox">
+        <label>
+            <input 
+                ngModel 
+                name="isGuaranteed" 
+                type="checkbox" 
+                name="money-back" 
+                id="money-back"
+            > 
+            30-day money-back guarantee
+        </label>
+
+    </div>
+
+
+    <!--JSON-->
+    {{f.value | json}}
+    <br>
+
+    <!--Submit-->
+    <button class="btn btn-primary" type="submit"  [disabled]="!f.valid">
+        Submit
+    </button>
+
+
+
+</form>

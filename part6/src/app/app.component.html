@@ -1,0 +1,49 @@
+
+<nav class="nav nav-pills">
+  <a href="#" class="nav-link" (click)="viewMode='map'"  [class.active]="viewMode=='map'"  >Home</a>
+  <a href="#" class="nav-link" (click)="viewMode='list'"  [class.active]="viewMode=='list'" >Profile</a>
+</nav>
+
+
+<div [ngSwitch]="viewMode">
+  <div *ngSwitchCase="'map'">MAP vIEW </div>
+  <div *ngSwitchCase="'list'"> lIST vIEW </div>
+  <div *ngSwitchDefault> Other </div>
+</div>
+
+<!-- ng for-->
+<button (click)="onAdd()"> Add </button>
+
+<ul>
+  <li *ngFor="let course of courses; index as i; even as isEven ; trackBy :trackCourse">
+    {{i}} - {{course.name}} <span *ngIf="isEven">(even)</span>
+    
+    <button (click)="onRemove(course)"> Remove </button>
+  
+  </li>
+</ul> 
+
+<button (click)="loadCourses()"> Load Cources</button>
+
+
+
+
+<!-- Custom Directives -->
+<br>
+<input type="text" appInputFormat [format]="'lowercase'">
+
+
+
+<!-- Exercise-->
+
+<zippy title="Shipping Details">
+    Shipping Details Content
+</zippy>
+
+<!-- My own-->
+
+<my-zippy title="First heading">
+  Hello world!
+</my-zippy>
+
+

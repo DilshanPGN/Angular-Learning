@@ -1,0 +1,22 @@
+<div class="my-zippy">
+
+    <div class="my-zippy-heading" (click)="toggle()"  [class.expanded]="isExpanded">
+        {{title}}
+
+        <i class="bi"
+        
+        [ngClass]="{'bi-chevron-up':isExpanded, 'bi-chevron-down':!isExpanded }"
+        
+        ></i>
+
+
+
+    </div>
+    <div class="my-zippy-body" >
+        <ng-content *ngIf="isExpanded">
+            <!-- meka athulata ennne app.component.html eka athuledi <my-ziipy> </my-zippy>  tag  athulata ena eka -->
+        </ng-content>
+    </div>
+
+
+</div>

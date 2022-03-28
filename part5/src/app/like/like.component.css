@@ -1,0 +1,20 @@
+
+.bi-heart-fill{
+    font-size: 45px;
+    color: rgb(116, 170, 177);
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.checked{
+    color: rgb(207, 0, 0);
+}
+
+.not-checked{
+    color: #ccc;
+}
+
+span{
+    font-size: 45px;
+    padding-left: 10px;
+}

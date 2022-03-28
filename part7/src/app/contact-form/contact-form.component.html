@@ -1,0 +1,82 @@
+<form ngForm #f="ngForm" (ngSubmit)="submit(f)" >
+
+
+    <div ngModelGroup="contact" #contact="ngModelGroup">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input required minlength="3" maxlength="10" pattern="banana"     ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)"  id = "firstName" type="text" class="form-control">  
+           <!--validation-->
+            <div class="alert alert-danger" *ngIf="!firstName.valid && firstName.touched "> 
+              <div *ngIf="firstName.errors?.['required']">First Name is required</div>
+              <div *ngIf="firstName.errors?.['minlength']">First should me minimum {{firstName.errors?.['minlength'].requiredLength}} char</div>
+              <div *ngIf="firstName.errors?.['pattern']">Firstname dont match with pattern</div>
+            </div>
+        
+        </div>
+    </div>
+
+    
+
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea ngModel name="cooment"  id="comment" cols="30" rows="10" class="form-control">           
+        </textarea>
+    </div>
+
+
+    <div class="form-group">
+        <label for="contactMethod1">
+            Contact Method
+        </label>
+
+        <select ngModel  name="contactMethod1" id="contactMethod1" class="form-control">
+            <option value=""></option>
+            <option *ngFor="let method of contactMethods" [value]="method.id" > {{method.name}} </option>
+            <!-- value eka nathuwa object ekama ganna onanam   [value] wenuwata [ngValue]="method" use karanna -->
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="contactMethod2">
+            Contact Method
+        </label>
+
+        <select multiple ngModel  name="contactMethod2" id="contactMethod2" class="form-control">
+            <option value=""></option>
+            <option *ngFor="let method of contactMethods" [value]="method.id" > {{method.name}} </option>
+            <!-- value eka nathuwa object ekama ganna onanam   [value] wenuwata [ngValue]="method" use karanna -->
+        </select>
+    </div>
+
+
+
+
+    <div class="checkbox">
+        <label >
+            <input type="checkbox" ngModel name="isSubscribe"> Subscribe to mailing list
+        </label>
+        
+    </div>
+
+
+
+    <!-- RAdio -->
+
+    <div *ngFor="let method of contactMethods"  class="radio">
+        <label>
+            <input ngModel type="radio" name="contactMethod" [value]="method.id" >
+            {{method.name}}
+        </label>
+    </div>
+
+
+
+    <p>
+        {{f.value | json}}
+    </p>
+     
+    <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+
+
+
+</form>

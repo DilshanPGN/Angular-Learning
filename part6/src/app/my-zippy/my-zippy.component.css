@@ -1,0 +1,27 @@
+.my-zippy{
+    border: 2px solid rgb(49, 47, 47);
+    margin: 2px;
+}
+
+.my-zippy-heading{
+    font-size: 22px;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.my-zippy-body{
+    padding: 15px;
+
+}
+
+
+.expanded{
+    background-color: aquamarine;
+}
+
+.bi{
+    float: right;
+}
+
+
+
