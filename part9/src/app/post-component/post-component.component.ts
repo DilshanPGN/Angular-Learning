@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { BadInput } from '../common/bad-input';
+import { NotFoundError } from '../common/not-found-error';
 import { PostService } from '../services/post.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class PostComponentComponent implements OnInit {
  constructor(private service : PostService){
 
  }
+ 
   ngOnInit(): void {
     
     this.service.getPosts().subscribe({
@@ -43,14 +45,17 @@ export class PostComponentComponent implements OnInit {
       this.posts.splice(0,0,post);
     },
 
-    error : error =>{
-      alert('An unexpected error occured!');
-      console.log(error);
+    error : (er : Response) =>{
+
+      if(er instanceof BadInput){
+        alert('Bad Request error occured!');
+        
+      } else{
+        alert('An unexpected error occured!');
+        console.log(er);       
+      }
     }
-
-
-   });
-
+   })
  }
 
 
@@ -78,9 +83,19 @@ export class PostComponentComponent implements OnInit {
       this.posts.splice(index,1);  
     },
 
-    error : error =>{
-      alert('An unexpected error occured!');
-      console.log(error);
+    error : (error : Response) =>{
+
+
+      
+      if(error instanceof NotFoundError){
+        alert('this post has already been deleted');
+
+      }else{
+        alert('An unexpected error occured!');
+        console.log(error);
+      }
+
+      
      }
      
    });
