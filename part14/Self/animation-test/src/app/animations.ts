@@ -60,11 +60,8 @@ import { animate, animation, keyframes, state, style, transition, trigger, useAn
             animate(2000) //applay in entering
         ]),
 
-        transition(':leave',[
-          
-            useAnimation(bounceOutAnimation)
-
-        ])
+        transition(':leave', useAnimation(bounceOutAnimation)
+)
     ])
 
 
